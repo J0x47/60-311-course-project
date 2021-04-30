@@ -1,0 +1,48 @@
+<!-- app/templates/home/dashboard.html -->
+
+{% extends "base.html" %}
+{% block title %}Menu{% endblock %}
+{% block body %}
+
+<div class="row">
+		<div class="col-12 mt-3">
+			<h1>Featured Food</h1>
+			<hr/>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-12">
+			<form method="get" action="" class="form-group form-inline sort-form">
+				 <h5 class="ml-auto mr-3 mt-2">Sort By:</h5>
+					<button type="submit" class="mr-1 form-control sort-btn {% if active_button == '-featured' %}sort-select{% endif %}" value="-featured" name="orderby">Featured First</button>
+					<button type="submit" class="mr-1 form-control sort-btn {% if active_button == 'price' %}sort-select{% endif %}" value="price" name="orderby">Price: Low to High</button>
+					<button type="submit" class="mr-1 form-control sort-btn {% if active_button == '-price' %}sort-select{% endif %}" value="-price" name="orderby">Price: High to Low</button>
+			</form>
+		</div>
+	</div>
+	<div class="row">
+		{% for obj in object_list %}
+			<div class="col my-3">
+			<div class="card" style="width: 14rem;">
+{#  {% if obj.image %}#}
+    <a href="{{ url_for('menu.menuItemDetail', pid=obj.id) }}"><img class="card-img-top" src="{{ url_for('static', filename='img/product/'+obj.image) }}" alt="{{ obj.name }} logo" style="width: 14rem; height: 14rem;"></a>
+{#  {% endif %}#}
+  <div class="card-block mx-2 my-3">
+    <p class="card-title text-center" style="font-size: 18px;"><a href="{{ url_for('menu.menuItemDetail', pid=obj.id) }}">{{ obj.name|truncate(20) }}</a></p>
+    <!-- <p class="card-text">{{ obj.desc|truncate(150) }}</p> -->
+    <p class="card-text" style="font-size: 18px;"><strong>$ {{ obj.price }}</strong></p>
+<div class="text-center">
+	<span class="submit-span">
+            <a class="btn btn-info" href="{{ url_for('cart.addToCart')}}?itemId={{ obj.id }}" role="button"><i class="fas fa-cart-plus" aria-hidden="true"></i> <i class="fas fa-long-arrow-alt-down" aria-hidden="true"></i></a>
+	</span>
+    </div>
+  </div>
+</div>
+			<!-- Add horizontal line after every row -->
+			<!-- {% if loop.index is divisibleby 3 %}
+			      </div></div><div class="row"><div class="col-12"><hr/>
+			{% endif %} -->
+		</div>
+		{% endfor %}
+	</div>
+{% endblock %}

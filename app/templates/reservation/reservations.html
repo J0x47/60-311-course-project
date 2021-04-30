@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Fresh Food|{{ title }}{% endblock %}
+{% block body %}
+
+<div class="container">
+  <h2>your reservations</h2>
+  <table class="table">
+    <tbody>
+    <tr>
+        <td>No.</td>
+        <td>Number of People</td>
+        <td>assigned table</td>
+        <td>reservation time</td>
+        <td>reservation status</td>
+        <td>created time</td>
+    </tr>
+    {% for res in reservation_list %}
+    <tr>
+        <td>{{ loop.index }}</td>
+        <td>{{ res.num_of_customer }}</td>
+        <td>{{ res.assigned_table_id }}</td>
+        <td>{{ res.res_datetime }}</td>
+        <td>{{ res.status }}</td>
+        <td>{{ res.created_on }}</td>
+
+    </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

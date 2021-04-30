@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Fresh Food|Shopping Cart{% endblock %}
+{% block body %}
+
+	<h1 class="mt-3">Cart</h1>
+
+	{% if num_cart_items > 0 %}
+		<table class="table cart-table">
+			<thead>
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col">Product Name</th>
+					<th scope="col">Product Price</th>
+				</tr>
+			</thead>
+			<tbody class="cart-body">
+				{% for mitem in cart_menu_items %}
+					<tr class="cart-product">
+						<th scope="row">{{ loop.index }}</th>
+						<td>
+							<a href="{{ url_for('menu.menuItemDetail', pid=mitem.id) }}">{{ mitem.name }}</a>
+							<!-- OR
+							<a href="#">{{ mitem.name }}</a> -->
+						</td>
+						<td>$ {{ mitem.price }}</td>
+					</tr>
+				{% endfor %}
+				<tr>
+					<td colspan=2></td>
+					<td><b>Total</b>: <span class="cart-total">$ {{ total_price }}</span></td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="modal-footer">
+        <a href="{{ url_for('menu.list_menuitems') }}"  class="btn btn-lg btn-primary mr-auto">Continue Shopping</a>
+        <a href=""  class="btn btn-lg btn-success">Checkout</a>
+      </div>
+	{% else %}
+		<p class="lead">Cart is empty</p>
+	{% endif %}
+
+	<div class="cart-item-remove-form" style="display:none;">
+
+	</div>
+{% endblock %}

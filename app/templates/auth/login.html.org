@@ -1,0 +1,160 @@
+{% extends 'base.html' %}
+{% import "bootstrap/utils.html" as utils %}
+
+    {% block header %}
+    <style type="text/css">
+    div {
+    display: block;
+    }
+    .heading-section {
+    padding: 40px 0;
+    text-align: center;
+    }
+    </style>
+    <link href="{{ url_for('static', filename='css/stylesheet.css') }}" rel="stylesheet" type="text/css" id="stylesheet-css">
+      <h1>{% block title %}Log In{% endblock %}</h1>
+    {% endblock %}
+
+    {% block content %}
+<div id="page-wrapper" class="content-area">
+
+            <div id="page-content">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="heading-section">
+					<h3>Log In</h3>
+					<span class="under-heading"></span>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-12">
+				<div id="login-form" class="content-wrap col-sm-4 center-block">
+										<form method="POST" accept-charset="utf-8" action="https://demo.tastyigniter.com/login" role="form">
+						<fieldset>
+							<div class="form-group">
+								<div class="input-group">
+									<input type="text" name="email" id="login-email" class="form-control input-lg" placeholder="Email Address" autofocus="">
+	         		 				<span class="input-group-addon">@</span>
+								</div>
+															</div>
+
+							<div class="form-group">
+								<div class="input-group">
+									<input type="password" name="password" id="login-password" class="form-control input-lg" placeholder="Password">
+         		 					<span class="input-group-addon"><i class="fa fa-lock"></i></span>
+								</div>
+															</div>
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <button type="submit" class="btn btn-primary btn-block btn-lg">Login</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-5 wrap-none">
+                                            <a class="btn btn-link btn-lg" href="https://demo.tastyigniter.com/forgot-password"><span class="small"><small>Forgot password?</small></span></a>
+                                        </div>
+                                        <div class="col-md-7">
+                                            <a class="btn btn-default btn-block btn-lg" href="https://demo.tastyigniter.com/register">Register</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!--<div class="container">-->
+        <!--<div class="row">-->
+			<!--<div class="col-md-12">-->
+				<!--<div class="heading-section">-->
+					<!--<h3>Log In..</h3>-->
+					<!--<span class="under-heading"></span>-->
+				<!--</div>-->
+			<!--</div>-->
+		<!--</div>-->
+        <!--<div class="row">-->
+			<!--<div class="col-md-12">-->
+				<!--<div id="login-form" class="content-wrap col-sm-4 center-block">-->
+										<!--<form method="POST" accept-charset="utf-8" action="https://demo.tastyigniter.com/login" role="form">-->
+						<!--<fieldset>-->
+							<!--<div class="form-group">-->
+								<!--<div class="input-group">-->
+									<!--<input type="text" name="email" id="login-email" class="form-control input-lg" placeholder="Email Address" autofocus="">-->
+	         		 				<!--<span class="input-group-addon">@</span>-->
+								<!--</div>-->
+															<!--</div>-->
+
+							<!--<div class="form-group">-->
+								<!--<div class="input-group">-->
+									<!--<input type="password" name="password" id="login-password" class="form-control input-lg" placeholder="Password">-->
+         		 					<!--<span class="input-group-addon"><i class="fa fa-lock"></i></span>-->
+								<!--</div>-->
+															<!--</div>-->
+
+							<!--<div class="form-group">-->
+								<!--<div class="row">-->
+									<!--<div class="col-md-12">-->
+										<!--<button type="submit" class="btn btn-primary btn-block btn-lg">Login</button>-->
+									<!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+
+                            <!--<div class="form-group">-->
+                                <!--<div class="row">-->
+                                    <!--<div class="col-md-5 wrap-none">-->
+                                        <!--<a class="btn btn-link btn-lg" href="https://demo.tastyigniter.com/forgot-password"><span class="small"><small>Forgot password?</small></span></a>-->
+                                    <!--</div>-->
+                                    <!--<div class="col-md-7">-->
+                                        <!--<a class="btn btn-default btn-block btn-lg" href="https://demo.tastyigniter.com/register">Register</a>-->
+                                    <!--</div>-->
+								<!--</div>-->
+							<!--</div>-->
+						<!--</fieldset>-->
+					<!--</form>-->
+				<!--</div>-->
+ 			<!--</div>-->
+		<!--</div>-->
+        <!--<div class="row">-->
+            <!--<div class="col-md-12">-->
+                <!--<div id="login-form" class="content-wrap col-sm-4 center-block">-->
+                <!--<form  accept-charset="utf-8" role="form" method="post">-->
+                    <!--<fieldset>-->
+                    <!--<div class="form-group">-->
+                        <!--<div class="input-group">-->
+                            <!--<input class="form-control input-lg" name="username" placeholder="User Name" id="username" required>-->
+                        <!--</div>-->
+                        <!--&lt;!&ndash;<label for="username">Username</label>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<input class="form-control" name="username" id="username" required>&ndash;&gt;-->
+                    <!--</div>-->
+                    <!--<div class="form-group">-->
+                        <!--<div class="input-group">-->
+                            <!--<input type="password" class="form-control input-lg" name="password" placeholder="Password" id="password" required>-->
+                        <!--</div>-->
+                        <!--&lt;!&ndash;<label for="password">Password</label>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<input type="password" class="form-control" name="password" id="password" required>&ndash;&gt;-->
+                    <!--</div>-->
+                    <!--<div class="form-group">-->
+                        <!--<div class="row">-->
+                            <!--<div class="col-md-12">-->
+                                <!--<button type="submit" class="btn btn-primary btn-block btn-lg">Login</button>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</fieldset>-->
+                <!--</form>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+    {% endblock %}

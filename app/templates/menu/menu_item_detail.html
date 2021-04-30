@@ -1,0 +1,27 @@
+<!-- app/templates/menu/menu_item_detail.html -->
+
+{% extends "base.html" %}
+{% block title %}{{ food.name }}{% endblock %}
+{% block body %}
+    <div id="main" class="clear-top">
+        <div class="container">
+		<a href="/addToCart?productId={{request.args.get('productId')}}">Add to Cart</a>
+
+<div class="row">
+    <div class="col-12 my-5">
+      <h1>{{ food.name }}</h1>
+      <hr/>
+    </div>
+    <div class="col-12 col-md-6">
+        <img class="img-fluid" src="{{ url_for('static', filename='img/product/'+food.image) }}">
+    </div>
+    <div class="col-12 col-md-6">
+      {{ food.desc|nl2br }}<br/>
+      <h4>Price: <strong>$ {{ food.price }}</strong></h4>
+    <span class="submit-span">
+            <a class="btn btn-info" href="{{ url_for('cart.addToCart')}}?itemId={{ food.id }}" role="button"><i class="fas fa-cart-plus" aria-hidden="true"></i> <i class="fas fa-long-arrow-alt-down" aria-hidden="true"></i></a>
+	</span>    </div>
+  </div>
+        </div>
+    </div>
+{% endblock %}

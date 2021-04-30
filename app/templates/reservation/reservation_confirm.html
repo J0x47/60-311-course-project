@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}Fresh Food|Table Reservation{% endblock %}
+{% block body %}
+
+<div class="container">
+  <h2>Table Reservation Information</h2>
+    <p>please confirm the information and then submit the reservation request</p>
+  <table class="table">
+    <tbody>
+      <tr>
+        <td>First Name</td>
+        <td>{{ userobj.first_name }}</td>
+      </tr>
+      <tr>
+        <td>Last Name</td>
+        <td>{{ userobj.last_name }}</td>
+      </tr>
+       <tr>
+        <td>Contact Phone</td>
+        <td>{{ userobj.phone }}</td>
+      </tr>
+      <tr>
+        <td>Email</td>
+        <td>{{ userobj.email }}</td>
+      </tr>
+      <tr>
+        <td>Number of Customers</td>
+        <td>{{ reservation_obj.num_of_customer }}</td>
+      </tr>
+      <tr>
+        <td>Special description</td>
+        <td>{{ reservation_obj.special_desc }}</td>
+      </tr>
+    </tbody>
+  </table>
+    <div class="container">
+  <div class="row">
+    <div class="col-12 text-center"><a href="{{ url_for('reservation.view_reservations') }}"  class="btn btn-lg btn-success">confirm</a>
+
+    </div>
+  </div>
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{{ title }} | Windsor Food Delivery Online & Take Out</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    {% include "base/css.html" %}
+    {% include "base/js.html" %}
+    {% block header %}{% endblock %}
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg sticky-top navbar-dark" style="background-color: #000000;">
+   <div class="container">
+      <a class="navbar-brand" href="#">Fresh Food
+         <i class="fas fa-shopping-cart" aria-hidden="true"></i>
+         <!-- <img src="https://png.icons8.com/wired/50/000000/shopping-cart.png" width="35" height="35" class="d-inline-block align-top" alt=""> -->
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+         <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+
+         <ul class="navbar-nav ml-4">
+{#            <li>{% include 'search/snippets/search-form.html' %}</li>#}
+         </ul>
+
+
+          {% if current_user.is_authenticated %}
+                {% if current_user.is_admin %}
+                    <ul class="navbar-nav ml-4">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('admin.admin_dashboard') }}">Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('admin.list_departments') }}">Departments</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('admin.list_roles') }}">Roles</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('admin.list_employees') }}">Employees</a>
+                        </li>
+                     </ul>
+                {% else %}
+                    <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+               <a class="nav-link" href="{{ url_for('home.index') }}"><i class="fa fa-home"></i>Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+               <a class="nav-link" href="{{ url_for('reservation.make_reservation') }}">Reservation</a>
+            </li>
+            <li class="nav-item">
+               <a class="nav-link" href="{{ url_for('menu.list_menuitems') }}">Menu</a>
+            </li>
+
+         </ul>
+                    <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        {% if current_user.is_authenticated %}
+                            {% if session['cart'] %}
+                    <a class="nav-link" href="{{ url_for('cart.Home', cid=session['cart'].id)}}"><span class="cart-item-count">{{ session['num_cart_items'] }}</span> <i class="fas fa-shopping-cart" aria-hidden="true"></i></a>
+                            {% else %}
+                                <a class="nav-link" href="#"><span class="cart-item-count"></span> <i class="fas fa-shopping-cart" aria-hidden="true"></i></a>
+                            {% endif %}
+                            {% else  %}
+                            <a class="nav-link" href="#"><span class="cart-item-count"></span> <i class="fas fa-shopping-cart" aria-hidden="true"></i></a>
+
+                            {% endif %}
+                    </li>
+                    </ul>
+                    <ul class="navbar-nav ml-4">
+                    <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('home.dashboard') }}">Dashboard</a>
+                    </li>
+                    </ul>
+                {% endif %}
+              <ul class="navbar-nav ml-4">
+              <li class="nav-item">
+                  <a class="nav-link" href="{{ url_for('auth.logout') }}">Logout</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="#"><i class="fa fa-user"></i>  Hi, {{ current_user.username }}!</a>
+              </li>
+              </ul>
+            {% else %}
+              <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+               <a class="nav-link" href="{{ url_for('home.index') }}"><i class="fa fa-home"></i>Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+               <a class="nav-link" href="{{ url_for('reservation.view_reservations') }}">Reservation</a>
+            </li>
+            <li class="nav-item">
+               <a class="nav-link" href="{{ url_for('menu.list_menuitems') }}">Menu</a>
+            </li>
+
+         </ul>
+              <ul class="navbar-nav ml-4">
+              <li class="nav-item">
+                  <a class="nav-link" href="{{ url_for('auth.register') }}">Register</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="{{ url_for('auth.login') }}">Login</a>
+              </li>
+              </ul>
+            {% endif %}
+
+      </div>
+   </div>
+</nav>
+    <div class="wrapper">
+    <div id="main" class="clear-top">
+        <div class="container-fluid">
+		{% block body %}
+        {% endblock %}
+        </div>
+    </div>
+
+      <div class="push"></div>
+    </div>
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <ul class="list-inline">
+                        <li><a href="{{ url_for('home.index') }}">Home</a></li>
+                      <li class="footer-menu-divider">&sdot;</li>
+                      {% if current_user.is_authenticated %}
+                        <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
+                      {% else %}
+                        <li><a href="{{ url_for('auth.register') }}">Register</a></li>
+                        <li class="footer-menu-divider">&sdot;</li>
+                        <li><a href="{{ url_for('auth.login') }}">Login</a></li>
+                      {% endif %}
+                    </ul>
+                    <p class="copyright text-muted small">Copyright © 2018. All Rights Reserved</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+{#{% block scripts %}{% endblock %}#}
+</body>
+</html>

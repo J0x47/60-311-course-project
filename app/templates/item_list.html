@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Item list</title>
+</head>
+<body>
+{% if name %}
+<h3>item list</h3>
+
+<h6>name: {{ name }}</h6>
+<ul>
+    {% for item in items %}
+        <li>item_id: {{ item.item_id }}, title: {{ item.title }}</li>
+    {% endfor%}
+</ul>
+<h6>use filter:</h6>
+{{ ablist|join(', ') }}
+{% else %}
+<h4> No items </h4>
+{% endif %}
+</body>
+</html>
